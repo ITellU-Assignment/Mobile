@@ -1,16 +1,75 @@
-# mobile
+````markdown
+# iTellU Mobile (Flutter)
 
-A new Flutter project.
+## Overview
+Student app to view and respond to pending lesson invites.
 
-## Getting Started
+**Features:**
+- Fetches pending invites via REST (`GET /invites?status=pending`)  
+- Accept or reject invites (`PATCH /invites/:id`)  
+- Dark theme with a teal accent  
+- Pull-to-refresh via AppBar action  
 
-This project is a starting point for a Flutter application.
+## Tech Stack
+- Flutter (Dart)  
+- `http` package for API communication  
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Setup & Run
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. **Install Flutter dependencies**  
+   ```bash
+   cd mobile
+   flutter pub get
+````
+
+2. **Configure API URL**
+   By default the app points to `http://localhost:5000`.
+   If your backend runs elsewhere, open
+   `lib/services/api_service.dart` and update:
+
+   ```dart
+   static const String _baseUrl = 'http://localhost:5000';
+   ```
+
+3. **Launch the app**
+
+   ```bash
+   flutter run
+   ```
+
+   * Choose your connected device, emulator, or specify `-d chrome` for web.
+
+4. **Use the UI**
+
+   * The **Pending Invites** screen loads all invites with status `pending`.
+   * Tap **Accept** or **Reject** on each card to update its status.
+
+---
+
+## Project Structure
+
+```
+mobile/
+├── lib/
+│   ├── main.dart
+│   ├── models/
+│   │   └── invite.dart
+│   └── services/
+│       └── api_service.dart
+├── pubspec.yaml
+└── README.md
+```
+
+---
+
+## Assumptions
+
+* **No login** — student identity is implicit for demo purposes.
+* **Only pending invites** are shown; accepted/rejected are filtered out.
+* Backend API must be running and accessible at the configured `_baseUrl`.
+* Dark mode and accent color chosen for a modern, security‐focused aesthetic.
+
+```
+```
